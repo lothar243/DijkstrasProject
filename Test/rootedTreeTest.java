@@ -80,5 +80,36 @@ public class rootedTreeTest extends TestCase {
         rootedTree testTree = setUpTestTree1();
         testTree.distanceFromRoot = new int[] {0, -1, -1, -1, -1, -1, -1};
         testTree.previousNode = new int[] {-1, -1, -1, -1, -1, -1};
+        testTree.generateRootedTree();
+
+        assertEquals(0, testTree.distanceFromRoot[0]);
+        assertEquals(2, testTree.distanceFromRoot[1]);
+        assertEquals(3, testTree.distanceFromRoot[2]);
+        assertEquals(1, testTree.distanceFromRoot[3]);
+        assertEquals(2, testTree.distanceFromRoot[4]);
+        assertEquals(4, testTree.distanceFromRoot[5]);
+        assertEquals(-1, testTree.previousNode[0]);
+        assertEquals(0, testTree.previousNode[1]);
+        assertEquals(4, testTree.previousNode[2]);
+        assertEquals(0, testTree.previousNode[3]);
+        assertEquals(3, testTree.previousNode[4]);
+        assertEquals(4, testTree.previousNode[5]);
+    }
+
+    public static void testShortestPathToRoot() {
+        System.out.println("testing shortestPathToRoot");
+        rootedTree testTree = new rootedTree();
+        testTree.rootNum = 1;
+        testTree.distanceFromRoot = new int[]{10, 0, 10, 20};
+        testTree.previousNode = new int[]{1, -1, 1, 0};
+
+        int [] testPath = testTree.shortestPathToRoot(0);
+        assertEquals(1, testPath[0]);
+        assertEquals(0, testPath[1]);
+
+        testPath = testTree.shortestPathToRoot(3);
+        assertEquals(1, testPath[0]);
+        assertEquals(0, testPath[1]);
+        assertEquals(3, testPath[2]);
     }
 }
